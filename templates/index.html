@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+      <style>
+        /* Estilos para el fondo de toda la página */
+        body {
+            background-color: #004646
+        }
+
+        /* Estilo para el título */
+        .titulo {
+            color: white; /* Cambia el color de texto según tu preferencia */
+        }
+
+        /* Estilo para el fondo del card shadow */
+        .card.shadow {
+        background-color:#00f1c4 /* Cambia #color_deseado por el color que desees */
+        }
+
+        /* Estilo para el fondo del botón */
+        .btn-primary {
+        background-color: #004646; /* Cambia #color_deseado por el color que desees */
+        }
+        /* Posición Imagen */
+        .image {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            width: 150px;
+        }
+         /* Estilos personalizados para el modal */
+        .modal-content {
+        background-color:#004646; /* Cambia esto al color de fondo deseado */
+        }
+        .modal-content,
+        .modal-content h5, .modal-content p {
+        color: white; /* Cambia esto al color de texto deseado */
+        }
+
+    </style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+
+<!-- CUERPO APP-->
+<body>
+    <h1 class="text-center mt-5 nb-5 titulo"><strong>Predicción Rating Interno IRIS</strong></h1>
+    <h5 class="text-center mt-5 nb-5 titulo"><em>Modelo Machine Learning para la predicción del Rating de Clientes de Cartera Comercial</em></h5>
+     <br>
+     <br>
+
+
+      <div class="container">
+          <div class="card shadow">
+              <div class="card-body">
+                  <form action="/predecir" method="post">
+                      <div class="row mb-3">
+                          <div class="col">
+                              <label for="cliente"><strong>CLIENTE:</strong></label>
+                              <input type="text" id="cliente" name="cliente" placeholder="Nombre Cliente" required="required">
+                          </div>
+                          <div class="col">
+                             <label for="valorCredito"><strong>MONTO CRÉDITO:</strong></label>
+                              <input type="number" id="valorCredito" name="desembolso" placeholder="En Millones" required="required">
+                          </div>
+
+                          <div class="col">
+                              <label for="region"><strong>REGIONAL:</strong></label>
+                              <select name="region" id="region" required>
+                                  <option value="" disabled selected>Selecciona una región</option>
+                                  <option value="BARRANQUILLA">Barranquilla</option>
+                                  <option value="BOGOTA">Bogotá</option>
+                                  <option value="BUCARAMANGA">Bucaramanga</option>
+                                  <option value="CALI">Cali</option>
+                                  <option value="MEDELLIN">Medellín</option>
+                              </select>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row mb-3">
+
+                           <div class="col">
+                            <label for="plazocredito"><strong>PLAZO CRÉDITO:</strong></label>
+                              <input type="number" name="Plazo" id="plazocredito" placeholder="En días" required="required">
+                          </div>
+
+                          <div class="col">
+                              <label for="sector"><strong>SECTOR:</strong></label>
+                              <select name="sector" id="sector" required>
+                                  <option value="" disabled selected>Selecciona un Sector</option>
+                                  <option value="COMERCIO">Comercio</option>
+                                  <option value="COMUNICACION">Comunicación</option>
+                                  <option value="CONSTRUCCION">Construcción</option>
+                                  <option value="FINANCIERO">Financiero</option>
+                                  <option value="INMOBILIARIO">Inmobiliario</option>
+                                  <option value="MANUFACTURA">Manufactura</option>
+                                  <option value="MINERIA">Minería</option>
+                                  <option value="SERVICIOS">Servicios</option>
+                                  <option value="TRASNPORTE">Transporte</option>
+                                  <option value="OTRO">Otro</option>
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <label for="tamaño"><strong>TAMAÑO EMPRESA:</strong> </label>
+                              <select name="TamañoEmpresa" id="tamaño" required>
+                                  <option value="" disabled selected>Selecciona un Tamaño</option>
+                                  <option value="GRANDE">Gran Empresa</option>
+                                  <option value="MEDIANA">Mediana Empresa</option>
+                                  <option value="PEQUEÑA">Pequeña Empresa</option>
+                                  <option value="NATURAL">Persona Natural</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <br>
+
+                      <div class="row mb-3">
+                          <div class="col">
+                              <label for="riesgo"><strong>NIVEL RIESGO:</strong></label>
+                              <select name="riesgo" id="riesgo" required>
+                                  <option value="" disabled selected>Selecciona un Nivel de Riesgo</option>
+                                  <option value="Riesgo Bajo">Riesgo Bajo</option>
+                                  <option value="Riesgo Moderado">Riesgo Moderado</option>
+                                  <option value="Riesgo Alto">Riesgo Alto</option>
+                                  <option value="Riesgo Extremo">Riesgo Extremo</option>
+                              </select>
+                          </div>
+                          <div class="col">
+                              <label for="linea"><strong>PRODUCTO:</strong></label>
+                              <select name="linea" id="linea" required>
+                                  <option value="" disabled selected>Selecciona una Línea de Negocio</option>
+                                  <option value="EMPRESARIAL">Empresarial</option>
+                                  <option value="FACTORING">Factoring</option>
+                                  <option value="LEASING">Leasing</option>
+                                  <option value="OTRO">Otro</option>
+                              </select>
+                          </div>
+
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block btn-large" data-bs-toggle="modal" data-bs-target="#prediccionModal"> PREDICCIÓN RATING</button>
+                          </div>
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+     <!-- Modal para mostrar la predicción -->
+    <div class="modal fade" id="prediccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">RESULTADO RATING</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   {{prediccion_texto}}
+                    <br>
+                    <p>{{riesgo}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="image" src="https://github.com/barrios8420/prueba/raw/main/logo.png" alt="Logo de la empresa">
+
+</body>
+</html>
+
