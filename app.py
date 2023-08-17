@@ -1,13 +1,17 @@
 import pickle
 from flask import Flask,render_template,request
 import pandas as pd
+import os
 #doc + tab (poner cuerpo html por defecto)
 
 
 app = Flask(__name__)
 
-# Cargar el modelo
-model = pickle.load(open('rf_model.pkl','rb'))
+
+
+archivo_modelo = os.path.join(os.path.dirname(__file__), 'rf_model.pkl')
+model = pickle.load(open(archivo_modelo, 'rb'))
+
 # Diccionario para almacenar las entradas de los clientes
 diccionario = {}
 
