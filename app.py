@@ -80,7 +80,7 @@ def predecir():
     if output <= 0.27 and riesgo == "Riesgo Moderado":
         resultado = "1.TOP TIER"
     elif output <= 0.27 and riesgo == "Riesgo Bajo":
-        resultado = "1.TOP riesgo"
+        resultado = "1.TOP TIER"
     elif output <= 0.27 and riesgo == "Riesgo Extremo":
         resultado = "2.MID TIER"
     elif output <= 0.27 and riesgo == "Riesgo Alto":
