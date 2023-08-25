@@ -76,7 +76,29 @@ def predecir():
         'LINEA_NEGOCIO': linea_negocio,
         'RATING': output
     }
-    return render_template('index.html', prediccion_texto=f'El RATING INTERNO de Riesgo para el cliente {CLIENTE} es: {output}',riesgo=f'EL RATING DEL BURÓ es {riesgo}')
+    #MENSAJE OUTPUT
+    if output <= 0.27 and riesgo == "Riesgo Moderado":
+        resultado = "1.TOP TIER"
+    elif output <= 0.27 and riesgo == "Riesgo Bajo":
+        resultado = "1.TOP riesgo"
+    elif output <= 0.27 and riesgo == "Riesgo Extremo":
+        resultado = "2.MID TIER"
+    elif output <= 0.27 and riesgo == "Riesgo Alto":
+        resultado = "2.MID TIER"
+    elif 0.27 < output < 0.48:
+        resultado = "2.MID TIER"
+    elif output >= 0.48 and riesgo == "Riesgo Alto":
+        resultado = "3.LOW TIER"
+    elif output >= 0.48 and riesgo == "Riesgo Extremo":
+        resultado = "3.LOW TIER"
+    elif output >= 0.48 and riesgo == "Riesgo Moderado":
+        resultado = "2.MID TIER"
+    elif output >= 0.48 and riesgo == "Riesgo Bajo":
+        resultado = "2.MID TIER"
+    else:
+        resultado = ""
+
+    return render_template('index.html', prediccion_texto=f'El RATING INTERNO de Riesgo para el cliente {CLIENTE} es: {output}',tier=f'Su Clasificación es: {resultado}')
 
 @app.route("/historial", methods=['GET'])
 def historial():
