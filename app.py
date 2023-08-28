@@ -1,5 +1,5 @@
 import pickle
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,jsonify
 import pandas as pd
 import os
 #doc + tab (poner cuerpo html por defecto)
@@ -98,7 +98,8 @@ def predecir():
     else:
         resultado = ""
 
-    return render_template('index.html', prediccion_texto=f'El RATING INTERNO de Riesgo para el cliente {CLIENTE} es: {output}',tier=f'Su Clasificación es: {resultado}')
+    return jsonify(prediccion_texto=f'El RATING INTERNO de Riesgo para el cliente {CLIENTE} es: {output}',
+                   tier=f'Su Clasificación es: {resultado}')
 
 @app.route("/historial", methods=['GET'])
 def historial():

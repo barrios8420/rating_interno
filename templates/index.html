@@ -148,7 +148,7 @@
                           </div>
 
                           <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block btn-large" data-bs-toggle="modal" data-bs-target="#prediccionModal"> PREDICCIÓN RATING</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-large" id="prediccionButton"> PREDICCIÓN RATING</button>
                           </div>
                       </div>
                   </form>
@@ -157,7 +157,7 @@
           </div>
       </div>
 
-     <!-- Modal para mostrar la predicción -->
+      <!-- Modal para mostrar la predicción -->
     <div class="modal fade" id="prediccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -166,15 +166,47 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   {{prediccion_texto}}
+                    <p id="prediccionTexto"></p>
                     <br>
-                    <p>{{tier}}</p>
+                    <p id="tierTexto"></p>
                 </div>
             </div>
         </div>
     </div>
-    <img class="image" src="https://github.com/barrios8420/prueba/raw/main/logo.png" alt="Logo de la empresa">
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const predictionButton = document.getElementById('prediccionButton');
+            const predictionModal = new bootstrap.Modal(document.getElementById('prediccionModal'));
+            const prediccionTextoElement = document.getElementById('prediccionTexto');
+            const tierTextoElement = document.getElementById('tierTexto');
+
+            predictionButton.addEventListener('click', async function(event) {
+                event.preventDefault(); // Evita el envío del formulario
+
+                const form = document.querySelector('form'); // Selecciona el formulario
+                const formData = new FormData(form); // Crea un objeto FormData con los datos del formulario
+
+                // Envía la solicitud POST con los datos del formulario en el cuerpo
+                const response = await fetch('/predecir', {
+                    method: 'POST',
+                    body: formData // Envía los datos del formulario
+                });
+
+                const data = await response.json();
+
+                // Asigna los valores al modal
+                prediccionTextoElement.textContent = data.prediccion_texto;
+                tierTextoElement.textContent = data.tier;
+
+                // Abre el modal manualmente después de enviar el formulario
+                predictionModal.show();
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
 
